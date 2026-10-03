@@ -3,121 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sohini Naskar | BIOTECHNOLOGY X AI &amp; Python</title>
-<meta name="description" content="Portfolio of Sohini Naskar: Python, biotechnology, bioinformatics and data science.">
+<title>Sohini Naskar | Biotechnology × AI</title>
+<meta name="description" content="Portfolio of Sohini Naskar: biotechnology with AI, Python, bioinformatics and data science.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#05090b;--panel:#0b1417;--line:#17302f;--mint:#5df2c0;--cyan:#38d6f5;--text:#d7e6e3;--muted:#8aa5a1}
+:root{--bg:#04080a;--panel:rgba(10,22,25,.72);--line:#17302f;--mint:#5df2c0;--cyan:#38d6f5;--text:#d7e6e3;--muted:#8aa5a1;--skin:#e6b08a;--skin2:#c98a66;--hair:#120e14;--iris:#4a2a1c}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
 body{background:var(--bg);color:var(--text);font:300 1.05rem/1.7 Manrope,system-ui,sans-serif;overflow-x:hidden}
 body.intro-on{overflow:hidden}
-h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.01em}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0}
 
 /* Intro */
-#intro{position:fixed;inset:0;z-index:100;background:#020506;display:grid;place-items:center;transition:opacity 1.2s ease,visibility 1.2s}
-#intro.done{opacity:0;visibility:hidden;pointer-events:none}
+#intro{position:fixed;inset:0;z-index:100;background:#020506;display:grid;place-items:center;overflow:hidden;transition:transform 1.4s cubic-bezier(.7,0,.2,1),visibility 0s 1.4s}
+#intro.done{transform:translateY(-101%);visibility:hidden;pointer-events:none}
 #dna{position:absolute;inset:0;width:100%;height:100%;transition:opacity 1.4s ease}
 #dna.fade{opacity:0}
-.intro-text{position:relative;text-align:center;padding:0 1.5rem;transition:opacity 1s ease}
+.intro-text{position:relative;text-align:center;padding:0 1.5rem;transition:opacity 1s}
 .intro-text.hide{opacity:0}
-#introName{font-size:clamp(2.6rem,8.5vw,6.2rem);line-height:1.1;color:#fff;opacity:0;letter-spacing:.35em;filter:blur(12px);transition:opacity 1.8s ease,letter-spacing 2.4s cubic-bezier(.2,.7,.2,1),filter 1.8s ease}
-#introName.show{opacity:1;letter-spacing:.06em;filter:blur(0);text-shadow:0 0 40px rgba(93,242,192,.35)}
-#introSub{margin-top:1rem;color:var(--mint);font-size:clamp(.95rem,2.4vw,1.25rem);letter-spacing:.18em;opacity:0;transform:translateY(10px);transition:opacity 1.2s ease,transform 1.2s ease}
-#introSub.show{opacity:1;transform:none}
-#portraitStage{position:absolute;inset:0;opacity:0;visibility:hidden;overflow:hidden;background:#020506;transition:opacity 1.2s ease}
-#portraitStage.show{opacity:1;visibility:visible}
-#portrait{position:absolute;left:50%;top:50%;height:min(88vh,900px);max-width:94vw;width:auto;object-fit:contain;transform:translate(-50%,-50%) scale(1);transform-origin:var(--eye-x,50%) var(--eye-y,45%);transition:transform 3s cubic-bezier(.65,0,.25,1);box-shadow:0 0 90px rgba(56,214,245,.15)}
+#hello{font-size:clamp(.9rem,2.6vw,1.3rem);letter-spacing:.4em;color:var(--mint);opacity:0;transition:opacity 1.2s}
+#introName{font-size:clamp(2.2rem,8vw,5.8rem);line-height:1.1;color:#fff;opacity:0;letter-spacing:.4em;filter:blur(12px);text-transform:uppercase;transition:opacity 1.8s,letter-spacing 2.4s cubic-bezier(.2,.7,.2,1),filter 1.8s}
+#introSub{margin-top:1rem;color:var(--cyan);font-size:clamp(1rem,3vw,1.6rem);letter-spacing:.3em;opacity:0;transform:translateY(10px);transition:opacity 1.2s,transform 1.2s}
+#hello.show,#introSub.show{opacity:1;transform:none}
+#introName.show{opacity:1;letter-spacing:.07em;filter:blur(0);text-shadow:0 0 40px rgba(93,242,192,.4)}
+#stage{position:absolute;inset:0;opacity:0;visibility:hidden;background:radial-gradient(circle at 50% 45%,#0a1d1f,#020506 70%);transition:opacity 1.2s}
+#stage.show{opacity:1;visibility:visible}
+#portrait{position:absolute;left:50%;top:50%;width:min(60vw,400px);aspect-ratio:4/5;transform:translate(-50%,-50%) scale(1);transform-origin:50% 45%;transition:transform 3s cubic-bezier(.65,0,.25,1)}
 #portrait.eyes{transform:translate(-50%,-50%) scale(4.2)}
+#portrait.nt{transition:none}
+#head{width:100%;height:100%;transform:perspective(900px) rotateY(calc(var(--ry,0)*1deg)) rotateX(calc(var(--rx,0)*1deg));transition:transform 1.3s cubic-bezier(.5,0,.2,1)}
+#head svg,#head img,.hero-photo svg,.hero-photo img{width:100%;height:100%;display:block;object-fit:contain}
+.pu{transform:translate(calc(var(--px,0)*1px),calc(var(--py,0)*1px));transition:transform .9s cubic-bezier(.5,0,.2,1)}
+.eg{transform-box:fill-box;transform-origin:center;animation:blink 3.6s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+.ring{transform-origin:200px 240px;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.panel{position:absolute;top:50%;width:min(300px,27vw);padding:1.2rem 1.3rem;background:var(--panel);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px);opacity:0;transition:opacity .9s,transform .9s;font-size:.95rem;line-height:1.6}
+.panel h3{font-family:"Cormorant Garamond",serif;font-size:1.5rem;color:#fff;margin-bottom:.4rem;font-weight:500}
+#pl{left:5vw;transform:translate(-30px,-50%)}#pr{right:5vw;transform:translate(30px,-50%)}
+.panel.show{opacity:1;transform:translate(0,-50%)}
+.monitor{border:2px solid var(--cyan);border-radius:8px;background:#031013;box-shadow:0 0 24px rgba(56,214,245,.3);margin-bottom:.7rem;padding:4px}
+.monitor canvas{width:100%;height:96px;display:block}
+.monitor+i{display:block;height:6px;width:40%;margin:-.4rem auto .7rem;background:var(--line);border-radius:0 0 6px 6px}
 #skipBtn{position:absolute;right:1.2rem;bottom:1.2rem;z-index:5;background:rgba(5,9,11,.6);color:var(--mint);border:1px solid var(--mint);padding:.55rem 1.1rem;border-radius:999px;font:600 .8rem Manrope,sans-serif;letter-spacing:.1em;cursor:pointer;backdrop-filter:blur(6px);transition:background .25s,color .25s}
 #skipBtn:hover{background:var(--mint);color:#021}
 
-/* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:.9rem clamp(1rem,5vw,3rem);background:rgba(5,9,11,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+/* Site */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:.9rem clamp(1rem,5vw,3rem);background:rgba(4,8,10,.65);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .logo{font-family:"Cormorant Garamond",serif;font-size:1.5rem;color:#fff}
 .nav nav{display:flex;gap:clamp(.8rem,2.5vw,2rem)}
 .nav nav a{font-size:.9rem;color:var(--muted);position:relative;transition:color .25s}
 .nav nav a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--mint);transition:width .3s}
 .nav nav a:hover{color:var(--mint)}.nav nav a:hover::after{width:100%}
-
-/* Sections */
-main{max-width:1080px;margin:0 auto;padding:0 clamp(1rem,5vw,2rem)}
+main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 clamp(1rem,5vw,2rem)}
+footer{position:relative;z-index:1;text-align:center;padding:2.5rem 1rem 3rem;border-top:1px solid var(--line);color:var(--muted)}
 section{padding:4.5rem 0}
 section h2{font-size:clamp(2rem,5vw,2.8rem);color:#fff;margin-bottom:1.6rem}
 .hero{min-height:100vh;display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center;padding-top:7rem}
 .hero h2{font-size:clamp(2.8rem,7.5vw,5.2rem);line-height:1.05;background:linear-gradient(90deg,#fff,var(--mint) 60%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{margin:1.2rem 0 2rem;color:var(--muted);max-width:30em;font-size:1.2rem}
 .cta{display:flex;flex-wrap:wrap;gap:.8rem}
-.btn{padding:.75rem 1.5rem;border:1px solid var(--line);border-radius:999px;font-weight:600;font-size:.9rem;transition:transform .25s,border-color .25s,box-shadow .25s}
+.btn{padding:.75rem 1.5rem;border:1px solid var(--line);border-radius:999px;font-weight:600;font-size:.9rem;background:rgba(4,8,10,.4);transition:transform .25s,border-color .25s,box-shadow .25s}
 .btn:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 8px 24px rgba(56,214,245,.18)}
 .btn.primary{background:var(--mint);color:#04120d;border-color:var(--mint)}
-.hero-photo img{width:100%;max-height:70vh;object-fit:cover;border-radius:18px;border:1px solid var(--line);box-shadow:0 0 60px rgba(93,242,192,.12)}
+.hero-photo{background:radial-gradient(circle at 50% 45%,#0e2a2a,rgba(11,20,23,.8) 70%);border:1px solid var(--line);border-radius:18px;box-shadow:0 0 60px rgba(93,242,192,.12);aspect-ratio:4/5;max-height:70vh;justify-self:center;overflow:hidden}
 .about{list-style:none;display:grid;gap:.9rem}
-.about li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:10px;padding:1rem 1.25rem;transition:transform .3s,border-color .3s,box-shadow .3s}
-.about li:hover{transform:translateX(6px);border-left-color:var(--cyan);box-shadow:0 6px 24px rgba(56,214,245,.1)}
-.badges{display:flex;flex-wrap:wrap;gap:.7rem}
+.about li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:10px;padding:1rem 1.25rem;backdrop-filter:blur(6px);transition:transform .3s,border-color .3s,box-shadow .3s}
+.about li:hover{transform:translateX(6px);border-left-color:var(--cyan);box-shadow:0 6px 24px rgba(56,214,245,.12)}
+.badges,.socials{display:flex;flex-wrap:wrap;gap:.7rem}
 .badges img{height:28px;transition:transform .25s}.badges img:hover{transform:translateY(-3px) scale(1.05)}
 .stats{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start}
 .stats img{max-width:100%;height:auto;border-radius:10px}
-.socials{display:flex;gap:.8rem;flex-wrap:wrap}
 .socials img{height:30px;transition:transform .25s}.socials a:hover img{transform:translateY(-3px)}
-footer{text-align:center;padding:2.5rem 1rem 3rem;border-top:1px solid var(--line);color:var(--muted)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}
 .reveal.in{opacity:1;transform:none}
-
 @media(max-width:760px){
   .hero{grid-template-columns:1fr;min-height:auto;padding-top:6.5rem}
-  .hero-photo{order:-1;max-width:260px}
+  .hero-photo{order:-1;width:240px}
   .nav nav a:nth-child(n+3){display:none}
-  #portrait{height:auto;width:min(86vw,520px)}
+  #portrait{width:min(58vw,260px);top:38%}
+  .panel{top:auto;bottom:4.2rem;left:5vw!important;right:5vw!important;width:auto;transform:translateY(24px)!important}
+  .panel.show{transform:none!important}
 }
-@media(prefers-reduced-motion:reduce){
-  *{transition-duration:.01ms!important;animation:none!important}
-  html{scroll-behavior:auto}
-}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body class="intro-on">
+<canvas id="bg"></canvas>
 
-<!-- INTRO -->
 <div id="intro" aria-label="Introduction">
   <canvas id="dna"></canvas>
   <div class="intro-text">
+    <p id="hello">HELLO, I'M</p>
     <h1 id="introName">Sohini Naskar</h1>
-    <p id="introSub">Biotechnology + AI &amp; Python Developer</p>
+    <p id="introSub">BIOTECHNOLOGY × AI</p>
   </div>
-  <div id="portraitStage">
-    <img id="portrait" src="portrait.jpg" alt="Portrait of Sohini Naskar" decoding="async">
+  <div id="stage">
+    <div id="portrait" role="img" aria-label="Animated 3D-style avatar"><div id="head">
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="aS" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="var(--skin)"/><stop offset="1" stop-color="var(--skin2)"/></radialGradient>
+          <linearGradient id="aH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e2634"/><stop offset="1" stop-color="var(--hair)"/></linearGradient>
+          <radialGradient id="aI" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#8a5a3c"/><stop offset="1" stop-color="var(--iris)"/></radialGradient>
+        </defs>
+        <circle class="ring" cx="200" cy="240" r="185" fill="none" stroke="#5df2c0" stroke-opacity=".25" stroke-width="1.5" stroke-dasharray="4 10"/>
+        <path d="M88 230C70 90 330 90 312 230C330 300 345 360 330 435C318 412 306 424 296 402C286 428 270 416 262 396L138 396C130 416 114 428 104 402C94 424 82 412 70 435C55 360 72 300 88 230Z" fill="url(#aH)"/>
+        <rect x="172" y="318" width="56" height="75" rx="22" fill="var(--skin2)"/>
+        <path d="M30 500C30 412 110 380 200 380C290 380 370 412 370 500Z" fill="#14161b"/>
+        <path d="M163 382L200 452L237 382Z" fill="var(--skin2)"/>
+        <path d="M170 390Q200 446 230 390" fill="none" stroke="#cfd8dc" stroke-width="2"/>
+        <ellipse cx="113" cy="238" rx="9" ry="15" fill="var(--skin2)"/><ellipse cx="287" cy="238" rx="9" ry="15" fill="var(--skin2)"/>
+        <circle cx="113" cy="258" r="4" fill="#d9a441"/><circle cx="287" cy="258" r="4" fill="#d9a441"/>
+        <ellipse cx="200" cy="225" rx="88" ry="104" fill="url(#aS)"/>
+        <ellipse cx="150" cy="268" rx="20" ry="12" fill="#e57373" opacity=".14"/><ellipse cx="250" cy="268" rx="20" ry="12" fill="#e57373" opacity=".14"/>
+        <path d="M200 116C140 116 100 160 98 235C98 290 90 340 80 405C112 362 122 300 124 240C128 190 160 150 200 138Z" fill="url(#aH)"/>
+        <path d="M200 116C260 116 300 160 302 235C302 290 310 340 320 405C288 362 278 300 276 240C272 190 240 150 200 138Z" fill="url(#aH)"/>
+        <path d="M118 190C108 250 112 310 96 372M282 190C292 250 288 310 304 372" fill="none" stroke="#4a4056" stroke-width="2" opacity=".5"/>
+        <path d="M132 194Q160 180 188 192M212 192Q240 180 268 194" fill="none" stroke="#120e14" stroke-width="6" stroke-linecap="round"/>
+        <g class="eg"><ellipse cx="160" cy="224" rx="25" ry="15" fill="#fff"/><g class="pu"><circle cx="160" cy="224" r="12.5" fill="url(#aI)"/><circle cx="160" cy="224" r="5.5" fill="#06080a"/><circle cx="155" cy="219" r="3.2" fill="#fff"/></g><path d="M134 222Q160 204 186 222" fill="none" stroke="#120e14" stroke-width="3.5" stroke-linecap="round"/></g>
+        <g class="eg"><ellipse cx="240" cy="224" rx="25" ry="15" fill="#fff"/><g class="pu"><circle cx="240" cy="224" r="12.5" fill="url(#aI)"/><circle cx="240" cy="224" r="5.5" fill="#06080a"/><circle cx="235" cy="219" r="3.2" fill="#fff"/></g><path d="M214 222Q240 204 266 222" fill="none" stroke="#120e14" stroke-width="3.5" stroke-linecap="round"/></g>
+        <g fill="rgba(255,255,255,.07)" stroke="#e3b5a6" stroke-width="3.2"><ellipse cx="160" cy="224" rx="41" ry="36"/><ellipse cx="240" cy="224" rx="41" ry="36"/></g>
+        <path d="M197 218Q200 210 203 218M119 220L106 232M281 220L294 232" fill="none" stroke="#e3b5a6" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M200 236Q195 264 191 274Q200 280 209 274" fill="none" stroke="var(--skin2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M174 303Q187 295 200 300Q213 295 226 303Q200 325 174 303Z" fill="#c9605f"/><path d="M176 304Q200 310 224 304" fill="none" stroke="#8f3f40" stroke-width="2"/>
+      </svg></div>
+    </div>
+    <div class="panel" id="pl"><h3>Hello, I'm Sohini</h3>Developing Python-based projects and learning NumPy, Pandas and data analysis. Interested in the intersection of biotechnology, AI and bioinformatics.</div>
+    <div class="panel" id="pr"><div class="monitor"><canvas id="mon" width="320" height="192"></canvas></div><i></i><h3>DNA × computing</h3>Combining biological sciences with computational technologies.</div>
   </div>
   <button id="skipBtn" type="button">Skip intro</button>
 </div>
 
-<!-- SITE -->
 <header class="nav">
   <a href="#home" class="logo">Sohini Naskar</a>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#stack">Tech stack</a>
-    <a href="#stats">GitHub stats</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <nav><a href="#about">About</a><a href="#stack">Tech stack</a><a href="#stats">GitHub stats</a><a href="#contact">Contact</a></nav>
 </header>
 
 <main>
   <section id="home" class="hero">
     <div class="hero-copy">
       <h2>Sohini Naskar</h2>
-      <p class="lead">Biotechnology meets code: Python, data analysis and bioinformatics.</p>
-      <div class="cta">
-        <a class="btn primary" href="#about">About me</a>
-        <a class="btn" href="https://github.com/Sohini-17" target="_blank" rel="noopener">GitHub profile</a>
-      </div>
+      <p class="lead">Biotechnology × AI: Python, data analysis and bioinformatics.</p>
+      <div class="cta"><a class="btn primary" href="#about">About me</a><a class="btn" href="https://github.com/Sohini-17" target="_blank" rel="noopener">GitHub profile</a></div>
     </div>
-    <div class="hero-photo"><img src="portrait.jpg" alt="Sohini Naskar" onerror="this.parentElement.style.display='none'"></div>
+    <div class="hero-photo" id="heroAvatar"></div>
   </section>
 
   <section id="about" class="reveal">
@@ -163,97 +197,136 @@ footer{text-align:center;padding:2.5rem 1rem 3rem;border-top:1px solid var(--lin
   </section>
 </main>
 
-<footer>
-  <a href="https://visitcount.itsvg.in" target="_blank" rel="noopener"><img alt="Profile views" src="https://komarev.com/ghpvc/?username=Sohini-17&icon=5&color=6"></a>
-</footer>
+<footer><a href="https://visitcount.itsvg.in" target="_blank" rel="noopener"><img alt="Profile views" src="https://komarev.com/ghpvc/?username=Sohini-17&icon=5&color=6"></a></footer>
 
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
-  var intro = $('intro'), canvas = $('dna'), ctx = canvas.getContext('2d');
-  var name = $('introName'), sub = $('introSub'), text = document.querySelector('.intro-text');
-  var stage = $('portraitStage'), portrait = $('portrait'), skip = $('skipBtn');
-  var timers = [], raf, running = true, t0 = performance.now();
+  var intro = $('intro'), dna = $('dna'), dc = dna.getContext('2d'), mon = $('mon'), mc = mon.getContext('2d');
+  var bg = $('bg'), bc = bg.getContext('2d');
+  var portrait = $('portrait'), stage = $('stage'), hero = $('heroAvatar'), head = $('head');
+  var timers = [], running = true, t0 = performance.now();
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var D = Math.min(window.devicePixelRatio || 1, 2);
 
-  // Scroll reveal
+  hero.innerHTML = head.innerHTML;
+  var probe = new Image();
+  probe.onload = function () {
+    var tag = '<img src="avatar.png" alt="Avatar of Sohini Naskar">';
+    head.innerHTML = tag; hero.innerHTML = tag;
+  };
+  probe.src = 'avatar.png';
+
   var els = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); }
+  if (!('IntersectionObserver' in window)) els.forEach(function (e) { e.classList.add('in'); });
   else {
-    var io = new IntersectionObserver(function (list) {
-      list.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
-    }, { threshold: 0.12 });
+    var io = new IntersectionObserver(function (l) { l.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: .12 });
     els.forEach(function (e) { io.observe(e); });
   }
 
-  // DNA helix
-  function resize() {
-    var d = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = innerWidth * d; canvas.height = innerHeight * d;
-    ctx.setTransform(d, 0, 0, d, 0, 0);
+  function size() {
+    dna.width = innerWidth * D; dna.height = innerHeight * D; dc.setTransform(D, 0, 0, D, 0, 0);
+    bg.width = innerWidth * D; bg.height = innerHeight * D; bc.setTransform(D, 0, 0, D, 0, 0);
+    mc.setTransform(1, 0, 0, 1, 0, 0);
   }
-  resize(); addEventListener('resize', resize);
+  size(); addEventListener('resize', size);
 
-  function dot(x, y, z, c, a) {
-    var r = 4 + z * 2.2;
-    ctx.globalAlpha = a * (0.55 + 0.45 * (z + 1) / 2);
-    ctx.fillStyle = c; ctx.shadowColor = c; ctx.shadowBlur = 14;
-    ctx.beginPath(); ctx.arc(x, y, Math.max(r, 1.5), 0, 6.283); ctx.fill();
-    ctx.shadowBlur = 0;
-  }
-  function drawDNA(now) {
-    var w = innerWidth, h = innerHeight, t = (now - t0) / 1000;
-    ctx.clearRect(0, 0, w, h);
-    var n = w < 600 ? 26 : 44, amp = Math.min(w * 0.14, 130), cx = w / 2;
-    var step = h / (n - 1), grow = Math.min(t / 1.4, 1);
+  function helix(c, W, H, t, o) {
+    var n = o.n, hz = o.hz, len = hz ? W : H, mid = hz ? H / 2 : W / 2, hx = 0, hy = 0, last = -1;
+    c.clearRect(0, 0, W, H);
     for (var i = 0; i < n; i++) {
-      var y = i * step, ph = i * 0.42 + t * 1.6;
-      var x1 = cx + Math.sin(ph) * amp, x2 = cx - Math.sin(ph) * amp;
-      var z1 = Math.cos(ph), z2 = -z1;
-      var a = grow * (0.25 + 0.75 * Math.min(1, Math.sin(Math.PI * i / n) * 1.6));
-      ctx.globalAlpha = a * 0.35;
-      var g = ctx.createLinearGradient(x1, y, x2, y);
-      g.addColorStop(0, '#5df2c0'); g.addColorStop(1, '#38d6f5');
-      ctx.strokeStyle = g; ctx.lineWidth = 1.2;
-      ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y); ctx.stroke();
-      dot(x1, y, z1, '#5df2c0', a); dot(x2, y, z2, '#38d6f5', a);
+      var u = i / (n - 1); if (u > o.prog) break;
+      var ph = i * .42 + t * 1.6, s = Math.sin(ph), z = Math.cos(ph), p = u * len;
+      var a = Math.min(1, (o.prog - u) * 5 + .25) * (o.alpha || 1);
+      var x1 = hz ? p : mid + s * o.amp, y1 = hz ? mid + s * o.amp : p;
+      var x2 = hz ? p : mid - s * o.amp, y2 = hz ? mid - s * o.amp : p;
+      c.globalAlpha = a * .4; c.strokeStyle = '#5df2c0'; c.lineWidth = 1.2;
+      c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+      node(c, x1, y1, z, '#5df2c0', a, o.r); node(c, x2, y2, -z, '#38d6f5', a, o.r);
+      hx = p; hy = mid; last = i;
     }
-    ctx.globalAlpha = 1;
+    if (o.flash && last > 0 && o.prog < 1.001) {
+      var f = .5 + .5 * Math.sin(t * 16), g = c.createRadialGradient(hx, hy, 0, hx, hy, 70 + 50 * f);
+      g.addColorStop(0, 'rgba(255,255,255,' + (.5 + .4 * f) + ')'); g.addColorStop(.3, 'rgba(93,242,192,.35)'); g.addColorStop(1, 'rgba(56,214,245,0)');
+      c.globalAlpha = 1; c.fillStyle = g; c.fillRect(hx - 130, hy - 130, 260, 260);
+    }
+    c.globalAlpha = 1;
   }
-  function loop(now) { if (!running) return; drawDNA(now); raf = requestAnimationFrame(loop); }
-  raf = requestAnimationFrame(loop);
+  function node(c, x, y, z, col, a, r) {
+    c.globalAlpha = a * (.55 + .45 * (z + 1) / 2); c.fillStyle = col; c.shadowColor = col; c.shadowBlur = 12;
+    c.beginPath(); c.arc(x, y, Math.max(r + z * 2, 1.5), 0, 6.283); c.fill(); c.shadowBlur = 0;
+  }
 
-  // Finish / skip
+  var cr = [], nd = [], i;
+  for (i = 0; i < 11; i++) cr.push({ x: Math.random(), y: Math.random(), r: 30 + Math.random() * 60, ph: Math.random() * 6.28, sp: .15 + Math.random() * .35, dy: .003 + Math.random() * .006 });
+  for (i = 0; i < 38; i++) nd.push({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3 });
+  function drawBG(now) {
+    var t = now / 1000, W = innerWidth, H = innerHeight, k, j;
+    bc.clearRect(0, 0, W, H);
+    cr.forEach(function (q) {
+      q.y -= q.dy / 60; if (q.y < -.2) q.y = 1.2;
+      var cx = q.x * W, cy = q.y * H, f = Math.cos(t * q.sp + q.ph), pts = [];
+      for (k = 0; k < 6; k++) { var an = k * 1.0472, rr = q.r * (k % 2 ? .62 : 1); pts.push([cx + Math.cos(an) * rr * f, cy + Math.sin(an) * rr * 1.25]); }
+      bc.beginPath(); pts.forEach(function (p, m) { m ? bc.lineTo(p[0], p[1]) : bc.moveTo(p[0], p[1]); }); bc.closePath();
+      var g = bc.createLinearGradient(cx - q.r, cy - q.r, cx + q.r, cy + q.r);
+      g.addColorStop(0, 'rgba(93,242,192,.10)'); g.addColorStop(1, 'rgba(56,214,245,.03)');
+      bc.fillStyle = g; bc.fill(); bc.strokeStyle = 'rgba(93,242,192,.28)'; bc.lineWidth = 1; bc.stroke();
+      bc.strokeStyle = 'rgba(56,214,245,.15)'; bc.beginPath();
+      pts.forEach(function (p, m) { if (m % 2 === 0) { bc.moveTo(cx, cy - q.r * .1); bc.lineTo(p[0], p[1]); } }); bc.stroke();
+    });
+    nd.forEach(function (p) {
+      p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+    });
+    for (k = 0; k < nd.length; k++) {
+      for (j = k + 1; j < nd.length; j++) {
+        var dx = nd[k].x - nd[j].x, dy = nd[k].y - nd[j].y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) { bc.strokeStyle = 'rgba(56,214,245,' + (.22 * (1 - d / 120)) + ')'; bc.beginPath(); bc.moveTo(nd[k].x, nd[k].y); bc.lineTo(nd[j].x, nd[j].y); bc.stroke(); }
+      }
+      bc.fillStyle = 'rgba(93,242,192,.6)'; bc.beginPath(); bc.arc(nd[k].x, nd[k].y, 1.8, 0, 6.283); bc.fill();
+    }
+  }
+
+  var showMon = false;
+  function loop(now) {
+    drawBG(now);
+    if (running) {
+      var t = (now - t0) / 1000;
+      helix(dc, innerWidth, innerHeight, t, { hz: true, n: innerWidth < 600 ? 34 : 60, amp: Math.min(innerHeight * .16, 120), prog: Math.min(t / 2.8, 1), r: 4.5, flash: true });
+      if (showMon) helix(mc, 320, 192, t, { hz: false, n: 20, amp: 48, prog: 1, r: 3 });
+    }
+    requestAnimationFrame(loop);
+  }
+  if (reduce) drawBG(performance.now()); else requestAnimationFrame(loop);
+
   function finish() {
     if (!running) return; running = false;
-    timers.forEach(clearTimeout); cancelAnimationFrame(raf);
+    timers.forEach(clearTimeout);
     intro.classList.add('done'); document.body.classList.remove('intro-on');
     try { sessionStorage.setItem('introSeen', '1'); } catch (e) {}
-    setTimeout(function () { intro.style.display = 'none'; }, 1300);
+    setTimeout(function () { intro.style.display = 'none'; }, 1600);
   }
-  skip.addEventListener('click', finish);
+  $('skipBtn').addEventListener('click', finish);
   addEventListener('keydown', function (e) { if (e.key === 'Escape') finish(); });
 
-  var seen = false;
-  try { seen = sessionStorage.getItem('introSeen') === '1'; } catch (e) {}
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen = false; try { seen = sessionStorage.getItem('introSeen') === '1'; } catch (e) {}
   if (seen || reduce) { intro.style.display = 'none'; running = false; document.body.classList.remove('intro-on'); return; }
 
-  // Timeline
   function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
-  var hasPhoto = false, probe = new Image();
-  probe.onload = function () { hasPhoto = true; };
-  probe.src = portrait.getAttribute('src');
+  function look(px, py, ry, rx) { portrait.style.setProperty('--px', px); portrait.style.setProperty('--py', py); head.style.setProperty('--ry', ry); head.style.setProperty('--rx', rx); }
+  function on(id) { $(id).classList.add('show'); }
 
-  at(3600, function () { canvas.classList.add('fade'); });
-  at(4300, function () { name.classList.add('show'); });
-  at(6000, function () { sub.classList.add('show'); });
-  at(8200, function () {
-    if (!hasPhoto) { finish(); return; }
-    text.classList.add('hide'); stage.classList.add('show');
-    at(900, function () { portrait.classList.add('eyes'); });
-    at(4300, function () { portrait.classList.remove('eyes'); });
-    at(8200, finish);
+  at(4000, function () { dna.classList.add('fade'); });
+  at(4600, function () { on('hello'); on('introName'); });
+  at(6500, function () { on('introSub'); });
+  at(9000, function () {
+    document.querySelector('.intro-text').classList.add('hide');
+    portrait.classList.add('nt', 'eyes'); stage.classList.add('show');
   });
+  at(10900, function () { portrait.classList.remove('nt', 'eyes'); });
+  at(14200, function () { look(-8, 0, -20, 0); on('pl'); });
+  at(17400, function () { $('pl').classList.remove('show'); look(8, 0, 20, 0); showMon = true; on('pr'); });
+  at(20800, function () { $('pr').classList.remove('show'); look(0, -5, 0, 10); });
+  at(21900, finish);
 })();
 </script>
 </body>
