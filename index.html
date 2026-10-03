@@ -2,211 +2,845 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Sohini Naskar | Biotech + Python</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Sohini — Portfolio</title>
+
 <style>
-:root{--bg:#060b1f;--ink:#e8ecff;--mut:#9aa5d1;--ind:#6b5bff;--cy:#3fe0ff;--card:#0f1740}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-.serif{font-family:"Playfair Display",Georgia,serif}
-em{font-style:italic;color:var(--cy)}
-a{color:var(--cy)}
-:focus-visible{outline:3px solid var(--cy);outline-offset:3px}
-#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
-main,header,footer{position:relative;z-index:1}
 
-/* INTRO */
-#intro{position:fixed;inset:0;z-index:99;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity .9s}
-#intro.done{opacity:0;pointer-events:none}
-#vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
-#vid.on{opacity:1}
-#count{font-size:clamp(4rem,22vw,9rem);font-weight:800;position:relative}
-button{font:inherit;cursor:pointer}
-#enter{position:relative;padding:14px 34px;border:0;border-radius:40px;background:linear-gradient(90deg,var(--ind),var(--cy));color:#04101f;font-weight:700}
-#skip{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#ffffff22;color:#fff;border:1px solid #fff6;border-radius:20px;padding:8px 18px;z-index:2}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* HERO */
-header{min-height:100vh;display:grid;place-items:center;overflow:hidden;padding:env(safe-area-inset-top,0px) 5vw 0}
-header>*{grid-area:1/1}
-.name{align-self:start;margin-top:14vh;text-align:center;font-weight:800;line-height:.95;font-size:clamp(3.2rem,17vw,12rem);background:linear-gradient(90deg,#4aa8ff,var(--ind),#b04bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.me{align-self:end;height:78vh;max-width:90vw;object-fit:contain;position:relative;z-index:2}
-.hero-text{align-self:end;z-index:3;text-align:center;padding-bottom:6vh;text-shadow:0 2px 14px #000}
-.hero-text p{font-size:1.15rem}
-.btns{margin-top:1rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{padding:11px 26px;border-radius:30px;text-decoration:none;font-weight:600;border:1px solid var(--cy);color:var(--cy);background:#060b1fcc}
-.btn.main{background:var(--cy);color:#04101f}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+}
 
-/* SECTIONS */
-section{padding:14vw 7vw 4vw;max-width:1000px;margin:auto}
-h2{font-size:clamp(2rem,7vw,3.4rem);line-height:1.15;margin-bottom:1rem}
-p.lead{color:var(--mut);max-width:60ch}
-.focus{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:2rem}
-.focus div{padding:18px;border:1px solid #2a3170;border-radius:14px;background:#0b1233cc}
-.focus b{display:block;font-size:1.3rem}
-.focus span{color:var(--mut);font-size:.95rem}
+body {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
 
-.stage{position:relative;height:400px;margin-top:1rem;perspective:1200px;touch-action:pan-y}
-.card{position:absolute;left:50%;top:10px;width:min(250px,64vw);height:330px;margin-left:calc(min(250px,64vw)/-2);padding:22px;border-radius:18px;display:flex;flex-direction:column;gap:8px;border:1px solid #ffffff33;transition:transform .7s,opacity .7s;cursor:pointer;color:#fff}
-.card:nth-child(5n+1){background:linear-gradient(160deg,#7a3dff,#2a1b78)}
-.card:nth-child(5n+2){background:linear-gradient(160deg,#1f9bff,#123a8f)}
-.card:nth-child(5n+3){background:linear-gradient(160deg,#ff3d8b,#7a1456)}
-.card:nth-child(5n+4){background:linear-gradient(160deg,#ff8a2b,#8f3a0f)}
-.card:nth-child(5n+5){background:linear-gradient(160deg,#16c79a,#0c5a56)}
-.card h3{font-family:"Playfair Display",Georgia,serif;font-size:1.5rem}
-.card p{font-size:.92rem;flex:1;opacity:.92}
-.card a{color:#fff;font-weight:600}
-.ctl{display:flex;gap:16px;justify-content:center;align-items:center;color:var(--mut)}
-.ctl button{width:42px;height:42px;border-radius:50%;border:1px solid var(--cy);background:none;color:var(--cy);font-size:1.1rem}
+/* =========================================
+   HERO
+========================================= */
 
-#tk{width:100%;height:auto;display:block}
-.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;min-height:3rem}
-.chips li{padding:6px 16px;border-radius:20px;border:1px solid #3a4090;background:#0b1233}
+.hero {
+  position: relative;
 
-.orbit{display:grid;grid-template-columns:1fr minmax(210px,260px) 1fr;gap:18px;align-items:center}
-.frame{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#0b1233;box-shadow:0 0 80px #3fe0ff55}
-.frame img{width:100%;height:100%;object-fit:cover;object-position:top}
-.frame::after{content:"";position:absolute;inset:8px;border:1px solid #3fe0ff99;border-radius:4px;pointer-events:none}
-.panel{padding:14px 16px;border:1px solid #2f3a9a;border-radius:12px;background:#0b1233cc;font-size:.9rem;color:var(--mut)}
-.panel h4{color:var(--cy);font-weight:600;font-size:.85rem;margin-bottom:6px}
-.panel ul{padding-left:1.1rem}
-pre.panel{font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap}
-.bar{display:block;height:6px;border-radius:4px;background:#1a2260;margin-top:10px;overflow:hidden}
-.bar b{display:block;height:100%;width:70%;background:linear-gradient(90deg,var(--ind),var(--cy))}
-.role{text-align:center;color:var(--ink);font-weight:600}
-@media(max-width:700px){.orbit{grid-template-columns:1fr}.frame{order:-1;width:70%;margin:auto}}
-form{display:grid;gap:12px;margin-top:1.5rem;max-width:520px}
-input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #3a4090;background:#0b1233;color:var(--ink);font:inherit}
-form button{justify-self:start;padding:12px 28px;border:0;border-radius:30px;background:var(--cy);color:#04101f;font-weight:700}
-footer{padding:10vw 5vw 6vw;text-align:center;color:var(--mut)}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #111;
+}
+
+/* =========================================
+   VIDEO
+========================================= */
+
+#characterVideo {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+
+  background: #111;
+}
+
+/*
+   The video itself is visually rendered
+   full-screen.
+
+   No rotateX.
+   No rotateY.
+   No perspective.
+*/
+
+/* =========================================
+   DARK SUBTLE OVERLAY
+========================================= */
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.18),
+      transparent 55%
+    );
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+/* =========================================
+   NAV
+========================================= */
+
+.nav {
+  position: absolute;
+
+  top: 28px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 4px;
+
+  padding: 7px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.2);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.08);
+
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
+
+  box-shadow:
+    0 15px 50px
+    rgba(0,0,0,.25);
+
+  z-index: 10;
+}
+
+.nav a {
+  padding:
+    10px 18px;
+
+  border-radius: 999px;
+
+  color:
+    rgba(255,255,255,.75);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: .15em;
+
+  text-decoration: none;
+
+  transition:
+    .25s ease;
+}
+
+.nav a:hover {
+  color: white;
+
+  background:
+    rgba(255,255,255,.12);
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content {
+  position: absolute;
+
+  left:
+    clamp(24px, 5vw, 72px);
+
+  bottom:
+    clamp(30px, 7vh, 82px);
+
+  width:
+    min(
+      380px,
+      calc(100vw - 48px)
+    );
+
+  color: white;
+
+  z-index: 5;
+
+  text-shadow:
+    0 5px 30px
+    rgba(0,0,0,.35);
+}
+
+.hello {
+  margin-bottom: 2px;
+
+  font-size: 17px;
+
+  color:
+    rgba(255,255,255,.85);
+}
+
+.name {
+  font-family:
+    "Brush Script MT",
+    "Segoe Script",
+    cursive;
+
+  font-size:
+    clamp(
+      70px,
+      9vw,
+      120px
+    );
+
+  font-weight: 500;
+
+  line-height: .9;
+
+  letter-spacing: -.04em;
+}
+
+.bio {
+  max-width: 340px;
+
+  margin:
+    20px 0 25px;
+
+  color:
+    rgba(255,255,255,.7);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.buttons {
+  display: flex;
+
+  gap: 10px;
+}
+
+.button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 46px;
+
+  padding:
+    0 21px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform .2s ease,
+    background .2s ease;
+}
+
+.button:hover {
+  transform:
+    translateY(-2px);
+}
+
+.resume {
+  color: #111;
+
+  background: white;
+
+  border:
+    1px solid white;
+}
+
+.talk {
+  color: white;
+
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid
+    rgba(255,255,255,.35);
+
+  backdrop-filter:
+    blur(16px);
+
+  -webkit-backdrop-filter:
+    blur(16px);
+}
+
+.talk:hover {
+  background:
+    rgba(255,255,255,.16);
+}
+
+/* =========================================
+   CURSOR
+========================================= */
+
+.cursor-dot {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 7px;
+  height: 7px;
+
+  margin:
+    -3.5px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 15px
+    rgba(255,255,255,.9),
+
+    0 0 35px
+    rgba(255,255,255,.45);
+
+  pointer-events: none;
+
+  z-index: 9999;
+}
+
+.cursor-ring {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 38px;
+  height: 38px;
+
+  margin:
+    -19px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.55);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.03);
+
+  pointer-events: none;
+
+  z-index: 9998;
+
+  transition:
+    width .25s ease,
+    height .25s ease,
+    margin .25s ease,
+    background .25s ease;
+}
+
+.cursor-ring.hover {
+  width: 58px;
+  height: 58px;
+
+  margin:
+    -29px;
+
+  background:
+    rgba(255,255,255,.08);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .nav {
+    top: 18px;
+  }
+
+  .nav a {
+    padding:
+      9px 11px;
+
+    font-size: 9px;
+  }
+
+  .content {
+    bottom: 30px;
+  }
+
+  .name {
+    font-size: 70px;
+  }
+
+  .bio {
+    font-size: 12px;
+
+    margin:
+      16px 0 20px;
+  }
+
+}
+
+@media (pointer: coarse) {
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
+}
+
 </style>
 </head>
-<body>
-<canvas id="stars" aria-hidden="true"></canvas>
 
-<!-- INTRO: 0 to 100 counter, then intro.mp4 (same folder as this file) -->
-<div id="intro">
-  <video id="vid" playsinline preload="auto"><source src="intro.mp4" type="video/mp4"></video>
-  <div id="count">0</div>
-  <button id="enter" hidden>Play intro</button>
-  <button id="skip">Skip intro</button>
+<body>
+
+<div class="hero">
+
+  <!-- YOUR VIDEO -->
+  <video
+    id="characterVideo"
+    src="intro.mp4"
+    muted
+    playsinline
+    preload="auto"
+  ></video>
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="nav">
+
+    <a href="#work">
+      WORK
+    </a>
+
+    <a href="#about">
+      ABOUT
+    </a>
+
+    <a href="#contact">
+      CONTACT
+    </a>
+
+  </nav>
+
+
+  <!-- TEXT -->
+
+  <section class="content">
+
+    <p class="hello">
+      Hi, I’m
+    </p>
+
+    <h1 class="name">
+      Sohini
+    </h1>
+
+    <p class="bio">
+      Full Stack Developer crafting
+      immersive digital experiences,
+      thoughtful interfaces, and
+      beautifully engineered products.
+    </p>
+
+    <div class="buttons">
+
+      <a
+        class="button resume"
+        href="#"
+      >
+        Resume
+        <span>↗</span>
+      </a>
+
+      <a
+        class="button talk"
+        href="#contact"
+      >
+        Let’s Talk
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- CURSOR -->
+
+  <div
+    id="cursorDot"
+    class="cursor-dot"
+  ></div>
+
+  <div
+    id="cursorRing"
+    class="cursor-ring"
+  ></div>
+
 </div>
 
-<!-- HERO: put your transparent-background photo/avatar in this folder as avatar.png -->
-<header id="top">
-  <h1 class="name">SOHINI<br>NASKAR</h1>
-  <img class="me" src="avatar.png" alt="Sohini Naskar" onerror="this.remove()">
-  <div class="hero-text">
-    <p class="serif"><em>Biotechnology</em> and <em>AI</em>, built with Python</p>
-    <div class="btns"><a class="btn main" href="#projects">View my work</a><a class="btn" href="#contact">Let's talk</a></div>
-  </div>
-</header>
-
-<main>
-<section id="about">
-  <h2 class="serif">Building at the intersection of <em>biology &amp; code.</em></h2>
-  <p class="lead">I am Sohini, learning Python, data analysis and biotechnology. I build projects where code helps answer biology questions, and I want to collaborate on Python and biology projects.</p>
-  <div class="focus">
-    <div><b>Python</b><span>Projects and daily practice</span></div>
-    <div><b>Data analysis</b><span>pandas, NumPy, SQL, Matplotlib</span></div>
-    <div><b>Biotechnology</b><span>Bioinformatics and AI/ML</span></div>
-  </div>
-</section>
-
-<section id="projects">
-  <h2 class="serif">Things I've <em>built.</em></h2>
-  <div class="stage" id="stage">
-    <article class="card"><h3>Project one</h3><p>What it does, the problem it solves and the tools you used.</p><a href="https://github.com/">View on GitHub</a></article>
-    <article class="card"><h3>Project two</h3><p>What it does, the problem it solves and the tools you used.</p><a href="https://github.com/">View on GitHub</a></article>
-    <article class="card"><h3>Project three</h3><p>What it does, the problem it solves and the tools you used.</p><a href="https://github.com/">View on GitHub</a></article>
-    <article class="card"><h3>Project four</h3><p>What it does, the problem it solves and the tools you used.</p><a href="https://github.com/">View on GitHub</a></article>
-    <article class="card"><h3>Project five</h3><p>What it does, the problem it solves and the tools you used.</p><a href="https://github.com/">View on GitHub</a></article>
-  </div>
-  <div class="ctl"><button id="prev" aria-label="Previous project">&lt;</button><span id="num"></span><button id="next" aria-label="Next project">&gt;</button></div>
-</section>
-
-<section id="toolkit">
-  <h2 class="serif">My <em>toolkit.</em></h2>
-  <canvas id="tk" width="800" height="320" role="img" aria-label="Animated words: BIO, PYTHON, AI, DATA"></canvas>
-  <ul class="chips" id="chips"></ul>
-</section>
-
-<section id="profile">
-  <h2 class="serif">Who is <em>behind the code.</em></h2>
-  <div class="orbit">
-    <pre class="panel" aria-hidden="true">def build_future():
-    skills = ["python", "biology", "ai"]
-    return skills</pre>
-    <div class="frame"><img src="avatar.png" alt="Sohini Naskar" onerror="this.remove()"></div>
-    <div class="panel"><h4>Currently building</h4><ul><li>Python projects</li><li>Data analysis</li><li>Biotech + AI</li></ul><i class="bar"><b></b></i></div>
-    <div class="panel"><h4>Projects</h4><ul><li>Project one</li><li>Project two</li><li>Project three</li></ul></div>
-    <p class="role">Learner, Python builder, biotech enthusiast</p>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="serif">Let's <em>connect.</em></h2>
-  <p class="lead">Have an idea or a project in Python and biology? Send me a message.</p>
-  <form action="mailto:naskarsohini49@gmail.com" method="post" enctype="text/plain">
-    <input name="name" placeholder="Your name" aria-label="Your name" required>
-    <input name="email" type="email" placeholder="Your email" aria-label="Your email" required>
-    <textarea name="message" rows="4" placeholder="Tell me about your project or idea" aria-label="Message" required></textarea>
-    <button type="submit">Send message</button>
-  </form>
-</section>
-</main>
-<footer>&copy; 2026 Sohini Naskar</footer>
 
 <script>
-const $=s=>document.querySelector(s);
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-/* intro */
-const intro=$('#intro'),vid=$('#vid'),cnt=$('#count'),enter=$('#enter');
-let hasVid=true;
-document.body.style.overflow='hidden';
-function finish(){intro.classList.add('done');vid.pause();document.body.style.overflow='';setTimeout(()=>intro.remove(),1000)}
-let n=0;const t=setInterval(()=>{n=Math.min(100,n+Math.ceil(Math.random()*4));cnt.textContent=n;
-  if(n==100){clearInterval(t);cnt.hidden=true;enter.hidden=false;enter.focus()}},50);
-enter.onclick=()=>{if(!hasVid)return finish();enter.hidden=true;vid.classList.add('on');vid.play().catch(finish)};
-$('#skip').onclick=finish;vid.onended=finish;
-vid.querySelector('source').onerror=()=>{hasVid=false};
+/* =========================================
+   VIDEO
+========================================= */
 
-/* starfield */
-const sc=$('#stars'),sx=sc.getContext('2d');let S=[];
-function rs(){sc.width=innerWidth;sc.height=innerHeight;S=Array.from({length:110},()=>({x:Math.random()*sc.width,y:Math.random()*sc.height,r:Math.random()*1.4+.3,p:Math.random()*6}))}
-rs();addEventListener('resize',rs);
-(function f(t){sx.clearRect(0,0,sc.width,sc.height);S.forEach(s=>{sx.globalAlpha=.35+.35*Math.sin(t/900+s.p);sx.fillStyle='#bcd0ff';sx.beginPath();sx.arc(s.x,s.y,s.r,0,7);sx.fill()});requestAnimationFrame(f)})(0);
+const video =
+  document.getElementById(
+    "characterVideo"
+  );
 
-/* project coverflow */
-const cards=[...document.querySelectorAll('.card')],N=cards.length;let cur=0;
-function show(){cards.forEach((c,i)=>{let d=i-cur;if(d>N/2)d-=N;if(d<-N/2)d+=N;const a=Math.abs(d);
-c.style.transform=`translateX(${d*62}%) translateZ(${-a*140}px) rotateY(${-d*35}deg) scale(${a?1:1.05})`;
-c.style.opacity=a>2?0:1-a*.3;c.style.zIndex=10-a;c.style.pointerEvents=a>2?'none':'auto'});
-$('#num').textContent=String(cur+1).padStart(2,'0')+' / '+String(N).padStart(2,'0')}
-function go(d){cur=(cur+d+N)%N;show()}
-cards.forEach((c,i)=>c.onclick=()=>{cur=i;show()});
-$('#next').onclick=()=>go(1);$('#prev').onclick=()=>go(-1);
-let x0=0;const st=$('#stage');st.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
-st.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1)});
-show();if(!reduce)setInterval(()=>go(1),4500);
 
-/* toolkit: particles morph into words */
-const cv=$('#tk'),cx=cv.getContext('2d'),W=cv.width,H=cv.height;
-const words={BIO:'Biotechnology, Bioinformatics',PYTHON:'Python, pandas, NumPy, Matplotlib',AI:'AI, ML, PyTorch',DATA:'SQL, Linux, Data Analysis'};
-const keys=Object.keys(words);let k=0;
-const P=Array.from({length:900},()=>({x:Math.random()*W,y:Math.random()*H,tx:W/2,ty:H/2}));
-function pts(w){const o=document.createElement('canvas');o.width=W;o.height=H;const c=o.getContext('2d');
-  c.fillStyle='#fff';c.font=`800 ${w.length>4?170:240}px Inter,Arial,sans-serif`;c.textAlign='center';c.textBaseline='middle';c.fillText(w,W/2,H/2);
-  const d=c.getImageData(0,0,W,H).data,p=[];for(let y=0;y<H;y+=6)for(let x=0;x<W;x+=6)if(d[(y*W+x)*4+3]>128)p.push([x,y]);
-  return p.sort(()=>Math.random()-.5)}
-function setWord(){const p=pts(keys[k]);P.forEach((q,i)=>{const t=p[i%p.length];q.tx=t[0];q.ty=t[1]});
-  $('#chips').innerHTML=words[keys[k]].split(', ').map(s=>`<li>${s}</li>`).join('');k=(k+1)%keys.length}
-document.fonts.ready.then(()=>{setWord();if(!reduce)setInterval(setWord,3500)});
-(function d(){cx.clearRect(0,0,W,H);P.forEach((q,i)=>{q.x+=(q.tx-q.x)*.08;q.y+=(q.ty-q.y)*.08;cx.fillStyle=i%3?'#3fe0ff':'#6b5bff';cx.fillRect(q.x,q.y,3,3)});requestAnimationFrame(d)})();
+/* =========================================
+   CURSOR
+========================================= */
+
+const dot =
+  document.getElementById(
+    "cursorDot"
+  );
+
+const ring =
+  document.getElementById(
+    "cursorRing"
+  );
+
+
+let mouseX =
+  window.innerWidth / 2;
+
+let mouseY =
+  window.innerHeight / 2;
+
+let ringX =
+  mouseX;
+
+let ringY =
+  mouseY;
+
+
+/* =========================================
+   CURSOR MOVEMENT
+========================================= */
+
+window.addEventListener(
+  "pointermove",
+  function(event) {
+
+    mouseX =
+      event.clientX;
+
+    mouseY =
+      event.clientY;
+
+
+    dot.style.transform =
+      `translate(
+        ${mouseX}px,
+        ${mouseY}px
+      )`;
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+/* =========================================
+   SMOOTH CURSOR RING
+========================================= */
+
+function animateCursor() {
+
+  ringX +=
+    (
+      mouseX -
+      ringX
+    ) * 0.18;
+
+  ringY +=
+    (
+      mouseY -
+      ringY
+    ) * 0.18;
+
+
+  ring.style.transform =
+    `translate(
+      ${ringX}px,
+      ${ringY}px
+    )`;
+
+
+  requestAnimationFrame(
+    animateCursor
+  );
+}
+
+animateCursor();
+
+
+/* =========================================
+   INTERACTIVE CURSOR
+========================================= */
+
+document
+  .querySelectorAll(
+    "a, button"
+  )
+  .forEach(
+    function(element) {
+
+      element.addEventListener(
+        "pointerenter",
+        function() {
+
+          ring.classList.add(
+            "hover"
+          );
+
+        }
+      );
+
+      element.addEventListener(
+        "pointerleave",
+        function() {
+
+          ring.classList.remove(
+            "hover"
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================
+   CHARACTER TRACKING
+========================================= */
+
+let targetTime = 0;
+
+let smoothTime = 0;
+
+
+/*
+   Change this if the video contains
+   extra footage at the beginning/end.
+
+   0 = first frame
+   1 = last frame
+*/
+
+function updateCharacter() {
+
+  if (
+    !video.duration ||
+    !isFinite(video.duration)
+  ) {
+
+    requestAnimationFrame(
+      updateCharacter
+    );
+
+    return;
+  }
+
+
+  const faceX =
+    window.innerWidth * 0.50;
+
+  const faceY =
+    window.innerHeight * 0.43;
+
+
+  const dx =
+    mouseX - faceX;
+
+  const dy =
+    mouseY - faceY;
+
+
+  const distance =
+    Math.sqrt(
+      dx * dx +
+      dy * dy
+    );
+
+
+  /*
+     12% center deadzone.
+     Character looks directly
+     at the camera here.
+  */
+
+  const deadzone =
+    Math.sqrt(
+      window.innerWidth *
+      window.innerWidth +
+
+      window.innerHeight *
+      window.innerHeight
+    ) * 0.12;
+
+
+  if (
+    distance < deadzone
+  ) {
+
+    /*
+       Last frame is assumed
+       to be the neutral pose.
+    */
+
+    targetTime =
+      video.duration;
+
+  } else {
+
+    let angle =
+      Math.atan2(
+        dy,
+        dx
+      );
+
+
+    /*
+       Convert angle to
+       0 → 1 around the circle.
+    */
+
+    angle =
+      angle +
+      Math.PI / 2;
+
+
+    if (angle < 0) {
+      angle +=
+        Math.PI * 2;
+    }
+
+
+    const normalized =
+      (
+        angle %
+        (Math.PI * 2)
+      ) /
+      (Math.PI * 2);
+
+
+    targetTime =
+      normalized *
+      video.duration;
+  }
+
+
+  /*
+     Smooth movement.
+  */
+
+  smoothTime +=
+    (
+      targetTime -
+      smoothTime
+    ) * 0.26;
+
+
+  /*
+     Seek to the desired
+     position.
+  */
+
+  if (
+    Math.abs(
+      video.currentTime -
+      smoothTime
+    ) > 0.008
+  ) {
+
+    video.currentTime =
+      smoothTime;
+
+  }
+
+
+  requestAnimationFrame(
+    updateCharacter
+  );
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+video.addEventListener(
+  "loadedmetadata",
+  function() {
+
+    /*
+       Do NOT autoplay.
+
+       We use the video's frames
+       according to cursor position.
+    */
+
+    video.pause();
+
+    video.currentTime = 0;
+
+    requestAnimationFrame(
+      updateCharacter
+    );
+
+  }
+);
+
 </script>
+
 </body>
 </html>
