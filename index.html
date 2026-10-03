@@ -2,520 +2,896 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<title>Sohini Naskar — Biotechnology × AI</title>
 
-<title>Sohini — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  background: #050505;
+  color: #f5f5f5;
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#dnaCanvas {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background: #111;
 }
 
-body {
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-}
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero {
-  position: relative;
-
-  width: 100vw;
-  height: 100vh;
-
-  overflow: hidden;
-
-  background: #111;
-}
-
-/* =========================================
-   VIDEO
-========================================= */
-
-#characterVideo {
+#introVideo {
   position: absolute;
-
   inset: 0;
 
   width: 100%;
   height: 100%;
 
-  object-fit: cover;
+  /*
+    IMPORTANT:
+    contain = entire video stays visible.
+    Your face will NOT be cropped.
+  */
+  object-fit: contain;
+  object-position: center center;
 
+  background: #000;
+
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+#introVideo.visible {
+  opacity: 1;
+}
+
+.introText {
+  position: absolute;
+  z-index: 5;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+
+  opacity: 0;
   pointer-events: none;
 
-  background: #111;
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
 }
 
-/*
-   The video itself is visually rendered
-   full-screen.
+.introText.show {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
 
-   No rotateX.
-   No rotateY.
-   No perspective.
-*/
+.introName {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(42px, 8vw, 100px);
+  font-weight: 600;
+  letter-spacing: -2px;
+}
 
-/* =========================================
-   DARK SUBTLE OVERLAY
-========================================= */
+.introSub {
+  margin-top: 12px;
 
-.hero::after {
-  content: "";
+  font-size: clamp(14px, 2vw, 24px);
+  letter-spacing: 5px;
 
+  text-transform: uppercase;
+}
+
+/* Skip button */
+
+#skipIntro {
   position: absolute;
+  z-index: 20;
 
-  inset: 0;
+  right: 25px;
+  bottom: 25px;
+
+  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(0,0,0,.4);
+
+  color: white;
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+}
+
+/* =========================
+   MAIN WEBSITE
+========================= */
+
+#site {
+  display: none;
+  opacity: 0;
+
+  transition: opacity 1.5s ease;
+}
+
+#site.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* Navigation */
+
+nav {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 22px 5%;
+
+  background: rgba(5,5,5,.65);
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+}
+
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* Sections */
+
+section {
+  min-height: 100vh;
+
+  padding: 130px 7% 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,.08),
+      transparent 45%
+    );
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(55px, 11vw, 150px);
+
+  line-height: .95;
+
+  letter-spacing: -5px;
+}
+
+.hero p {
+  margin-top: 25px;
+
+  color: #aaa;
+
+  font-size: clamp(14px, 2vw, 20px);
+
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(42px, 7vw, 90px);
+
+  margin-bottom: 40px;
+}
+
+.sectionText {
+  max-width: 800px;
+
+  color: #aaa;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+}
+
+/* =========================
+   TOOLKIT
+========================= */
+
+.toolkitGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(180px, 1fr));
+
+  gap: 15px;
+}
+
+.tool {
+  padding: 30px;
+
+  border: 1px solid rgba(255,255,255,.1);
+
+  background: rgba(255,255,255,.025);
+
+  border-radius: 20px;
+
+  transition: .3s ease;
+}
+
+.tool:hover {
+  transform: translateY(-7px);
+
+  background: rgba(255,255,255,.07);
+}
+
+.tool h3 {
+  margin-bottom: 8px;
+}
+
+.tool p {
+  color: #888;
+  font-size: 13px;
+}
+
+/* =========================
+   WORKS
+========================= */
+
+.worksWrapper {
+  overflow-x: auto;
+
+  cursor: grab;
+
+  scrollbar-width: none;
+}
+
+.worksWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.works {
+  display: flex;
+
+  gap: 20px;
+
+  width: max-content;
+}
+
+.workCard {
+  width: min(75vw, 420px);
+
+  min-height: 300px;
+
+  padding: 35px;
+
+  border-radius: 25px;
+
+  border: 1px solid rgba(255,255,255,.1);
 
   background:
     linear-gradient(
-      90deg,
-      rgba(0,0,0,.18),
-      transparent 55%
+      145deg,
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.015)
     );
-
-  pointer-events: none;
-
-  z-index: 1;
-}
-
-/* =========================================
-   NAV
-========================================= */
-
-.nav {
-  position: absolute;
-
-  top: 28px;
-  left: 50%;
-
-  transform: translateX(-50%);
 
   display: flex;
 
-  gap: 4px;
+  flex-direction: column;
 
-  padding: 7px;
+  justify-content: flex-end;
 
-  border:
-    1px solid
-    rgba(255,255,255,.2);
-
-  border-radius: 999px;
-
-  background:
-    rgba(255,255,255,.08);
-
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
-
-  box-shadow:
-    0 15px 50px
-    rgba(0,0,0,.25);
-
-  z-index: 10;
+  transition: transform .3s ease;
 }
 
-.nav a {
-  padding:
-    10px 18px;
-
-  border-radius: 999px;
-
-  color:
-    rgba(255,255,255,.75);
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-  letter-spacing: .15em;
-
-  text-decoration: none;
-
-  transition:
-    .25s ease;
+.workCard:hover {
+  transform: translateY(-10px);
 }
 
-.nav a:hover {
-  color: white;
-
-  background:
-    rgba(255,255,255,.12);
-}
-
-/* =========================================
-   CONTENT
-========================================= */
-
-.content {
-  position: absolute;
-
-  left:
-    clamp(24px, 5vw, 72px);
-
-  bottom:
-    clamp(30px, 7vh, 82px);
-
-  width:
-    min(
-      380px,
-      calc(100vw - 48px)
-    );
-
-  color: white;
-
-  z-index: 5;
-
-  text-shadow:
-    0 5px 30px
-    rgba(0,0,0,.35);
-}
-
-.hello {
-  margin-bottom: 2px;
-
-  font-size: 17px;
-
-  color:
-    rgba(255,255,255,.85);
-}
-
-.name {
-  font-family:
-    "Brush Script MT",
-    "Segoe Script",
-    cursive;
-
-  font-size:
-    clamp(
-      70px,
-      9vw,
-      120px
-    );
-
-  font-weight: 500;
-
-  line-height: .9;
-
-  letter-spacing: -.04em;
-}
-
-.bio {
-  max-width: 340px;
-
-  margin:
-    20px 0 25px;
-
-  color:
-    rgba(255,255,255,.7);
+.workNumber {
+  color: #777;
 
   font-size: 13px;
 
-  line-height: 1.7;
+  margin-bottom: auto;
 }
 
-/* =========================================
-   BUTTONS
-========================================= */
+.workCard h3 {
+  font-family: "Playfair Display", serif;
 
-.buttons {
+  font-size: 32px;
+
+  margin-bottom: 10px;
+}
+
+.workCard p {
+  color: #999;
+
+  line-height: 1.6;
+}
+
+/* =========================
+   DESIGN
+========================= */
+
+.designGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+.designCard {
+  min-height: 230px;
+
+  padding: 30px;
+
+  border-radius: 25px;
+
+  border: 1px solid rgba(255,255,255,.1);
+
   display: flex;
 
-  gap: 10px;
+  flex-direction: column;
+
+  justify-content: flex-end;
 }
 
-.button {
-  display: inline-flex;
+.designCard h3 {
+  font-family: "Playfair Display", serif;
+
+  font-size: 27px;
+
+  margin-bottom: 10px;
+}
+
+.designCard p {
+  color: #888;
+}
+
+/* =========================
+   TECHNOLOGIES
+========================= */
+
+.techList {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.tech {
+  padding: 14px 20px;
+
+  border-radius: 30px;
+
+  border: 1px solid rgba(255,255,255,.15);
+
+  color: #ccc;
+}
+
+/* =========================
+   CONNECT
+========================= */
+
+.connect {
+  text-align: center;
 
   align-items: center;
-  justify-content: center;
+}
 
-  gap: 10px;
+.email {
+  margin-top: 30px;
 
-  min-height: 46px;
+  font-size: clamp(18px, 3vw, 30px);
 
-  padding:
-    0 21px;
-
-  border-radius: 999px;
-
-  font-size: 12px;
-
-  font-weight: 700;
+  color: white;
 
   text-decoration: none;
 
-  transition:
-    transform .2s ease,
-    background .2s ease;
+  border-bottom: 1px solid rgba(255,255,255,.5);
+
+  padding-bottom: 8px;
 }
 
-.button:hover {
-  transform:
-    translateY(-2px);
+footer {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #555;
+
+  font-size: 12px;
 }
 
-.resume {
-  color: #111;
-
-  background: white;
-
-  border:
-    1px solid white;
-}
-
-.talk {
-  color: white;
-
-  background:
-    rgba(255,255,255,.08);
-
-  border:
-    1px solid
-    rgba(255,255,255,.35);
-
-  backdrop-filter:
-    blur(16px);
-
-  -webkit-backdrop-filter:
-    blur(16px);
-}
-
-.talk:hover {
-  background:
-    rgba(255,255,255,.16);
-}
-
-/* =========================================
-   CURSOR
-========================================= */
-
-.cursor-dot {
-  position: fixed;
-
-  top: 0;
-  left: 0;
-
-  width: 7px;
-  height: 7px;
-
-  margin:
-    -3.5px;
-
-  border-radius: 50%;
-
-  background: white;
-
-  box-shadow:
-    0 0 15px
-    rgba(255,255,255,.9),
-
-    0 0 35px
-    rgba(255,255,255,.45);
-
-  pointer-events: none;
-
-  z-index: 9999;
-}
-
-.cursor-ring {
-  position: fixed;
-
-  top: 0;
-  left: 0;
-
-  width: 38px;
-  height: 38px;
-
-  margin:
-    -19px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.55);
-
-  border-radius: 50%;
-
-  background:
-    rgba(255,255,255,.03);
-
-  pointer-events: none;
-
-  z-index: 9998;
-
-  transition:
-    width .25s ease,
-    height .25s ease,
-    margin .25s ease,
-    background .25s ease;
-}
-
-.cursor-ring.hover {
-  width: 58px;
-  height: 58px;
-
-  margin:
-    -29px;
-
-  background:
-    rgba(255,255,255,.08);
-}
-
-/* =========================================
+/* =========================
    MOBILE
-========================================= */
+========================= */
 
-@media (max-width: 600px) {
+@media(max-width: 700px) {
 
-  .nav {
-    top: 18px;
+  nav {
+    padding: 18px 20px;
   }
 
-  .nav a {
-    padding:
-      9px 11px;
-
-    font-size: 9px;
-  }
-
-  .content {
-    bottom: 30px;
-  }
-
-  .name {
-    font-size: 70px;
-  }
-
-  .bio {
-    font-size: 12px;
-
-    margin:
-      16px 0 20px;
-  }
-
-}
-
-@media (pointer: coarse) {
-
-  .cursor-dot,
-  .cursor-ring {
+  nav ul {
     display: none;
   }
 
-}
+  section {
+    padding: 110px 20px 70px;
+  }
 
+  .hero h1 {
+    letter-spacing: -3px;
+  }
+
+  /*
+    Keep full video visible on mobile too.
+  */
+  #introVideo {
+    object-fit: contain;
+  }
+
+  .introName {
+    font-size: 48px;
+  }
+
+  .introSub {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="hero">
+<!-- =========================
+     INTRO
+========================= -->
 
-  <!-- YOUR VIDEO -->
+<div id="intro">
+
+  <canvas id="dnaCanvas"></canvas>
+
   <video
-    id="characterVideo"
+    id="introVideo"
     src="intro.mp4"
     muted
     playsinline
-    preload="auto"
-  ></video>
+    preload="auto">
+  </video>
+
+  <div id="nameText" class="introText">
+    <div class="introName">
+      Sohini Naskar
+    </div>
+  </div>
+
+  <div id="bioText" class="introText">
+    <div class="introSub">
+      Biotechnology × AI
+    </div>
+  </div>
+
+  <button id="skipIntro">
+    Skip Intro
+  </button>
+
+</div>
 
 
-  <!-- NAVIGATION -->
+<!-- =========================
+     MAIN WEBSITE
+========================= -->
 
-  <nav class="nav">
+<div id="site">
 
-    <a href="#work">
-      WORK
-    </a>
+  <nav>
 
-    <a href="#about">
-      ABOUT
-    </a>
+    <div class="logo">
+      SN
+    </div>
 
-    <a href="#contact">
-      CONTACT
-    </a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#design">Design</a></li>
+      <li><a href="#technology">Tech</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
 
   </nav>
 
 
-  <!-- TEXT -->
+  <!-- HOME -->
 
-  <section class="content">
+  <section id="home" class="hero">
 
-    <p class="hello">
-      Hi, I’m
-    </p>
+    <div>
 
-    <h1 class="name">
-      Sohini
-    </h1>
+      <h1>
+        Sohini Naskar
+      </h1>
 
-    <p class="bio">
-      Full Stack Developer crafting
-      immersive digital experiences,
-      thoughtful interfaces, and
-      beautifully engineered products.
-    </p>
-
-    <div class="buttons">
-
-      <a
-        class="button resume"
-        href="#"
-      >
-        Resume
-        <span>↗</span>
-      </a>
-
-      <a
-        class="button talk"
-        href="#contact"
-      >
-        Let’s Talk
-      </a>
+      <p>
+        Biotechnology × AI
+      </p>
 
     </div>
 
   </section>
 
 
-  <!-- CURSOR -->
+  <!-- ABOUT -->
 
-  <div
-    id="cursorDot"
-    class="cursor-dot"
-  ></div>
+  <section id="about">
 
-  <div
-    id="cursorRing"
-    class="cursor-ring"
-  ></div>
+    <h2 class="sectionTitle">
+      About Me
+    </h2>
+
+    <p class="sectionText">
+      I explore the intersection of biotechnology, artificial intelligence
+      and data-driven thinking.
+
+      <br><br>
+
+      My work combines scientific curiosity with computational tools to
+      understand biological systems, visualize information and build
+      intelligent digital experiences.
+
+      <br><br>
+
+      I am interested in turning complex scientific ideas into simple,
+      meaningful and beautifully designed experiences.
+    </p>
+
+  </section>
+
+
+  <!-- TOOLKIT -->
+
+  <section id="toolkit">
+
+    <h2 class="sectionTitle">
+      Toolkit
+    </h2>
+
+    <div class="toolkitGrid">
+
+      <div class="tool">
+        <h3>Python</h3>
+        <p>Programming & scientific computing</p>
+      </div>
+
+      <div class="tool">
+        <h3>Pandas</h3>
+        <p>Data analysis & manipulation</p>
+      </div>
+
+      <div class="tool">
+        <h3>NumPy</h3>
+        <p>Numerical computing</p>
+      </div>
+
+      <div class="tool">
+        <h3>Matplotlib</h3>
+        <p>Scientific visualization</p>
+      </div>
+
+      <div class="tool">
+        <h3>SQL</h3>
+        <p>Data querying & databases</p>
+      </div>
+
+      <div class="tool">
+        <h3>Git</h3>
+        <p>Version control</p>
+      </div>
+
+      <div class="tool">
+        <h3>HTML / CSS</h3>
+        <p>Web development</p>
+      </div>
+
+      <div class="tool">
+        <h3>AI</h3>
+        <p>Machine learning & intelligent systems</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WORKS -->
+
+  <section id="works">
+
+    <h2 class="sectionTitle">
+      Selected Works
+    </h2>
+
+    <div class="worksWrapper">
+
+      <div class="works">
+
+        <div class="workCard">
+
+          <span class="workNumber">
+            01
+          </span>
+
+          <h3>
+            BioData Lab
+          </h3>
+
+          <p>
+            A concept for exploring biological datasets
+            through interactive analysis and visualization.
+          </p>
+
+        </div>
+
+
+        <div class="workCard">
+
+          <span class="workNumber">
+            02
+          </span>
+
+          <h3>
+            AI Explorer
+          </h3>
+
+          <p>
+            An experimental interface for exploring
+            artificial intelligence concepts.
+          </p>
+
+        </div>
+
+
+        <div class="workCard">
+
+          <span class="workNumber">
+            03
+          </span>
+
+          <h3>
+            Science Visuals
+          </h3>
+
+          <p>
+            Visual storytelling for complex scientific
+            and biological concepts.
+          </p>
+
+        </div>
+
+
+        <div class="workCard">
+
+          <span class="workNumber">
+            04
+          </span>
+
+          <h3>
+            Data Studio
+          </h3>
+
+          <p>
+            A clean data exploration experience
+            combining analysis and visual design.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROFESSIONAL DESIGN -->
+
+  <section id="design">
+
+    <h2 class="sectionTitle">
+      Professional Design
+    </h2>
+
+    <div class="designGrid">
+
+      <div class="designCard">
+
+        <h3>
+          Research Interfaces
+        </h3>
+
+        <p>
+          Clear digital interfaces for scientific work.
+        </p>
+
+      </div>
+
+
+      <div class="designCard">
+
+        <h3>
+          Data Experiences
+        </h3>
+
+        <p>
+          Turning numbers into understandable experiences.
+        </p>
+
+      </div>
+
+
+      <div class="designCard">
+
+        <h3>
+          Digital Products
+        </h3>
+
+        <p>
+          Minimal, thoughtful and functional product design.
+        </p>
+
+      </div>
+
+
+      <div class="designCard">
+
+        <h3>
+          Scientific Storytelling
+        </h3>
+
+        <p>
+          Communicating complex ideas through visual design.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TECHNOLOGIES -->
+
+  <section id="technology">
+
+    <h2 class="sectionTitle">
+      Technologies
+    </h2>
+
+    <div class="techList">
+
+      <span class="tech">Python</span>
+      <span class="tech">SQL</span>
+      <span class="tech">JavaScript</span>
+      <span class="tech">Machine Learning</span>
+      <span class="tech">Data Visualization</span>
+      <span class="tech">Biotechnology</span>
+      <span class="tech">Git</span>
+      <span class="tech">HTML</span>
+      <span class="tech">CSS</span>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONNECT -->
+
+  <section id="connect" class="connect">
+
+    <h2 class="sectionTitle">
+      Let's Connect
+    </h2>
+
+    <p class="sectionText">
+      Interested in biotechnology, AI, data or creative technology?
+    </p>
+
+    <a
+      class="email"
+      href="mailto:naskarsohini49@gmail.com">
+
+      naskarsohini49@gmail.com
+
+    </a>
+
+  </section>
+
+
+  <footer>
+    © 2026 Sohini Naskar
+  </footer>
 
 </div>
 
@@ -523,319 +899,357 @@ body {
 <script>
 
 /* =========================================
-   VIDEO
+   DNA ANIMATION
 ========================================= */
 
-const video =
-  document.getElementById(
-    "characterVideo"
+const canvas = document.getElementById("dnaCanvas");
+const ctx = canvas.getContext("2d");
+
+let dnaAnimation = true;
+let dnaProgress = 0;
+
+function resizeCanvas() {
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", resizeCanvas);
+
+
+function drawDNA(time) {
+
+  if (!dnaAnimation) return;
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
   );
 
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
 
-/* =========================================
-   CURSOR
-========================================= */
-
-const dot =
-  document.getElementById(
-    "cursorDot"
+  const height = Math.min(
+    canvas.height * 0.75,
+    650
   );
 
-const ring =
-  document.getElementById(
-    "cursorRing"
+  const amplitude = Math.min(
+    canvas.width * 0.12,
+    150
   );
 
+  const turns = 2.2;
 
-let mouseX =
-  window.innerWidth / 2;
+  const points = 90;
 
-let mouseY =
-  window.innerHeight / 2;
+  for (let i = 0; i < points; i++) {
 
-let ringX =
-  mouseX;
+    const y =
+      centerY -
+      height / 2 +
+      (height * i / points);
 
-let ringY =
-  mouseY;
+    const wave =
+      Math.sin(
+        i / points * Math.PI * 2 * turns +
+        time * 0.001
+      );
+
+    const x1 =
+      centerX +
+      wave * amplitude;
+
+    const x2 =
+      centerX -
+      wave * amplitude;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      x1,
+      y,
+      2.2,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "rgba(255,255,255,.8)";
+
+    ctx.fill();
 
 
-/* =========================================
-   CURSOR MOVEMENT
-========================================= */
+    ctx.beginPath();
 
-window.addEventListener(
-  "pointermove",
-  function(event) {
+    ctx.arc(
+      x2,
+      y,
+      2.2,
+      0,
+      Math.PI * 2
+    );
 
-    mouseX =
-      event.clientX;
-
-    mouseY =
-      event.clientY;
+    ctx.fill();
 
 
-    dot.style.transform =
-      `translate(
-        ${mouseX}px,
-        ${mouseY}px
-      )`;
+    if (i % 5 === 0) {
 
-  },
-  {
-    passive: true
+      ctx.beginPath();
+
+      ctx.moveTo(x1, y);
+      ctx.lineTo(x2, y);
+
+      ctx.strokeStyle =
+        "rgba(255,255,255,.18)";
+
+      ctx.lineWidth = 1;
+
+      ctx.stroke();
+
+    }
+
   }
+
+  requestAnimationFrame(drawDNA);
+
+}
+
+requestAnimationFrame(drawDNA);
+
+
+/* =========================================
+   INTRO SEQUENCE
+========================================= */
+
+const intro = document.getElementById("intro");
+const video = document.getElementById("introVideo");
+
+const nameText =
+  document.getElementById("nameText");
+
+const bioText =
+  document.getElementById("bioText");
+
+const site =
+  document.getElementById("site");
+
+const skip =
+  document.getElementById("skipIntro");
+
+
+let introFinished = false;
+
+
+/*
+  DNA stays for a few seconds.
+  Then it disappears and leaves
+  a short blank moment.
+*/
+
+setTimeout(() => {
+
+  if (introFinished) return;
+
+  dnaAnimation = false;
+
+  canvas.style.transition =
+    "opacity 1s ease";
+
+  canvas.style.opacity = "0";
+
+}, 4800);
+
+
+/*
+  Start video after DNA.
+*/
+
+setTimeout(() => {
+
+  if (introFinished) return;
+
+  video.classList.add("visible");
+
+  video.play().catch(() => {
+    /*
+      If autoplay is blocked,
+      the user can still use Skip Intro.
+    */
+  });
+
+}, 5800);
+
+
+/*
+  Name appears during the video.
+*/
+
+setTimeout(() => {
+
+  if (introFinished) return;
+
+  nameText.classList.add("show");
+
+}, 7500);
+
+
+/*
+  Biotechnology × AI appears after name.
+*/
+
+setTimeout(() => {
+
+  if (introFinished) return;
+
+  nameText.classList.remove("show");
+
+  setTimeout(() => {
+
+    if (introFinished) return;
+
+    bioText.classList.add("show");
+
+  }, 600);
+
+}, 9500);
+
+
+/* =========================================
+   FINISH INTRO
+========================================= */
+
+function finishIntro() {
+
+  if (introFinished) return;
+
+  introFinished = true;
+
+  dnaAnimation = false;
+
+  video.pause();
+
+  intro.style.transition =
+    "opacity 1.2s ease";
+
+  intro.style.opacity = "0";
+
+  setTimeout(() => {
+
+    intro.style.display = "none";
+
+    site.style.display = "block";
+
+    requestAnimationFrame(() => {
+
+      site.classList.add("visible");
+
+    });
+
+  }, 1200);
+
+}
+
+
+/*
+  When video ends,
+  go to portfolio.
+*/
+
+video.addEventListener(
+  "ended",
+  finishIntro
+);
+
+
+/*
+  Fallback: if the video is shorter
+  than the text timing, still finish
+  after it ends.
+*/
+
+skip.addEventListener(
+  "click",
+  finishIntro
 );
 
 
 /* =========================================
-   SMOOTH CURSOR RING
+   DRAG / SWIPE WORKS
 ========================================= */
 
-function animateCursor() {
+const slider =
+  document.querySelector(".worksWrapper");
 
-  ringX +=
-    (
-      mouseX -
-      ringX
-    ) * 0.18;
-
-  ringY +=
-    (
-      mouseY -
-      ringY
-    ) * 0.18;
+let isDown = false;
+let startX;
+let scrollLeft;
 
 
-  ring.style.transform =
-    `translate(
-      ${ringX}px,
-      ${ringY}px
-    )`;
+slider.addEventListener(
+  "mousedown",
+  (e) => {
 
+    isDown = true;
 
-  requestAnimationFrame(
-    animateCursor
-  );
-}
+    slider.style.cursor = "grabbing";
 
-animateCursor();
+    startX = e.pageX -
+      slider.offsetLeft;
 
-
-/* =========================================
-   INTERACTIVE CURSOR
-========================================= */
-
-document
-  .querySelectorAll(
-    "a, button"
-  )
-  .forEach(
-    function(element) {
-
-      element.addEventListener(
-        "pointerenter",
-        function() {
-
-          ring.classList.add(
-            "hover"
-          );
-
-        }
-      );
-
-      element.addEventListener(
-        "pointerleave",
-        function() {
-
-          ring.classList.remove(
-            "hover"
-          );
-
-        }
-      );
-
-    }
-  );
-
-
-/* =========================================
-   CHARACTER TRACKING
-========================================= */
-
-let targetTime = 0;
-
-let smoothTime = 0;
-
-
-/*
-   Change this if the video contains
-   extra footage at the beginning/end.
-
-   0 = first frame
-   1 = last frame
-*/
-
-function updateCharacter() {
-
-  if (
-    !video.duration ||
-    !isFinite(video.duration)
-  ) {
-
-    requestAnimationFrame(
-      updateCharacter
-    );
-
-    return;
-  }
-
-
-  const faceX =
-    window.innerWidth * 0.50;
-
-  const faceY =
-    window.innerHeight * 0.43;
-
-
-  const dx =
-    mouseX - faceX;
-
-  const dy =
-    mouseY - faceY;
-
-
-  const distance =
-    Math.sqrt(
-      dx * dx +
-      dy * dy
-    );
-
-
-  /*
-     12% center deadzone.
-     Character looks directly
-     at the camera here.
-  */
-
-  const deadzone =
-    Math.sqrt(
-      window.innerWidth *
-      window.innerWidth +
-
-      window.innerHeight *
-      window.innerHeight
-    ) * 0.12;
-
-
-  if (
-    distance < deadzone
-  ) {
-
-    /*
-       Last frame is assumed
-       to be the neutral pose.
-    */
-
-    targetTime =
-      video.duration;
-
-  } else {
-
-    let angle =
-      Math.atan2(
-        dy,
-        dx
-      );
-
-
-    /*
-       Convert angle to
-       0 → 1 around the circle.
-    */
-
-    angle =
-      angle +
-      Math.PI / 2;
-
-
-    if (angle < 0) {
-      angle +=
-        Math.PI * 2;
-    }
-
-
-    const normalized =
-      (
-        angle %
-        (Math.PI * 2)
-      ) /
-      (Math.PI * 2);
-
-
-    targetTime =
-      normalized *
-      video.duration;
-  }
-
-
-  /*
-     Smooth movement.
-  */
-
-  smoothTime +=
-    (
-      targetTime -
-      smoothTime
-    ) * 0.26;
-
-
-  /*
-     Seek to the desired
-     position.
-  */
-
-  if (
-    Math.abs(
-      video.currentTime -
-      smoothTime
-    ) > 0.008
-  ) {
-
-    video.currentTime =
-      smoothTime;
+    scrollLeft =
+      slider.scrollLeft;
 
   }
+);
 
 
-  requestAnimationFrame(
-    updateCharacter
-  );
-}
+slider.addEventListener(
+  "mouseleave",
+  () => {
+
+    isDown = false;
+
+    slider.style.cursor = "grab";
+
+  }
+);
 
 
-/* =========================================
-   START
-========================================= */
+slider.addEventListener(
+  "mouseup",
+  () => {
 
-video.addEventListener(
-  "loadedmetadata",
-  function() {
+    isDown = false;
 
-    /*
-       Do NOT autoplay.
+    slider.style.cursor = "grab";
 
-       We use the video's frames
-       according to cursor position.
-    */
+  }
+);
 
-    video.pause();
 
-    video.currentTime = 0;
+slider.addEventListener(
+  "mousemove",
+  (e) => {
 
-    requestAnimationFrame(
-      updateCharacter
-    );
+    if (!isDown) return;
+
+    e.preventDefault();
+
+    const x =
+      e.pageX -
+      slider.offsetLeft;
+
+    const walk =
+      (x - startX) * 1.4;
+
+    slider.scrollLeft =
+      scrollLeft - walk;
 
   }
 );
