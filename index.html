@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sohini Naskar | BIOTECHNOLOGY X AI &amp; Python</title>
+<meta name="description" content="Portfolio of Sohini Naskar: Python, biotechnology, bioinformatics and data science.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05090b;--panel:#0b1417;--line:#17302f;--mint:#5df2c0;--cyan:#38d6f5;--text:#d7e6e3;--muted:#8aa5a1}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--text);font:300 1.05rem/1.7 Manrope,system-ui,sans-serif;overflow-x:hidden}
+body.intro-on{overflow:hidden}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.01em}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* Intro */
+#intro{position:fixed;inset:0;z-index:100;background:#020506;display:grid;place-items:center;transition:opacity 1.2s ease,visibility 1.2s}
+#intro.done{opacity:0;visibility:hidden;pointer-events:none}
+#dna{position:absolute;inset:0;width:100%;height:100%;transition:opacity 1.4s ease}
+#dna.fade{opacity:0}
+.intro-text{position:relative;text-align:center;padding:0 1.5rem;transition:opacity 1s ease}
+.intro-text.hide{opacity:0}
+#introName{font-size:clamp(2.6rem,8.5vw,6.2rem);line-height:1.1;color:#fff;opacity:0;letter-spacing:.35em;filter:blur(12px);transition:opacity 1.8s ease,letter-spacing 2.4s cubic-bezier(.2,.7,.2,1),filter 1.8s ease}
+#introName.show{opacity:1;letter-spacing:.06em;filter:blur(0);text-shadow:0 0 40px rgba(93,242,192,.35)}
+#introSub{margin-top:1rem;color:var(--mint);font-size:clamp(.95rem,2.4vw,1.25rem);letter-spacing:.18em;opacity:0;transform:translateY(10px);transition:opacity 1.2s ease,transform 1.2s ease}
+#introSub.show{opacity:1;transform:none}
+#portraitStage{position:absolute;inset:0;opacity:0;visibility:hidden;overflow:hidden;background:#020506;transition:opacity 1.2s ease}
+#portraitStage.show{opacity:1;visibility:visible}
+#portrait{position:absolute;left:50%;top:50%;height:min(88vh,900px);max-width:94vw;width:auto;object-fit:contain;transform:translate(-50%,-50%) scale(1);transform-origin:var(--eye-x,50%) var(--eye-y,38%);transition:transform 3s cubic-bezier(.65,0,.25,1);box-shadow:0 0 90px rgba(56,214,245,.15)}
+#portrait.eyes{transform:translate(-50%,-50%) scale(4.2)}
+#skipBtn{position:absolute;right:1.2rem;bottom:1.2rem;z-index:5;background:rgba(5,9,11,.6);color:var(--mint);border:1px solid var(--mint);padding:.55rem 1.1rem;border-radius:999px;font:600 .8rem Manrope,sans-serif;letter-spacing:.1em;cursor:pointer;backdrop-filter:blur(6px);transition:background .25s,color .25s}
+#skipBtn:hover{background:var(--mint);color:#021}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:.9rem clamp(1rem,5vw,3rem);background:rgba(5,9,11,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-family:"Cormorant Garamond",serif;font-size:1.5rem;color:#fff}
+.nav nav{display:flex;gap:clamp(.8rem,2.5vw,2rem)}
+.nav nav a{font-size:.9rem;color:var(--muted);position:relative;transition:color .25s}
+.nav nav a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--mint);transition:width .3s}
+.nav nav a:hover{color:var(--mint)}.nav nav a:hover::after{width:100%}
+
+/* Sections */
+main{max-width:1080px;margin:0 auto;padding:0 clamp(1rem,5vw,2rem)}
+section{padding:4.5rem 0}
+section h2{font-size:clamp(2rem,5vw,2.8rem);color:#fff;margin-bottom:1.6rem}
+.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center;padding-top:7rem}
+.hero h2{font-size:clamp(2.8rem,7.5vw,5.2rem);line-height:1.05;background:linear-gradient(90deg,#fff,var(--mint) 60%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:1.2rem 0 2rem;color:var(--muted);max-width:30em;font-size:1.2rem}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{padding:.75rem 1.5rem;border:1px solid var(--line);border-radius:999px;font-weight:600;font-size:.9rem;transition:transform .25s,border-color .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 8px 24px rgba(56,214,245,.18)}
+.btn.primary{background:var(--mint);color:#04120d;border-color:var(--mint)}
+.hero-photo img{width:100%;max-height:70vh;object-fit:cover;border-radius:18px;border:1px solid var(--line);box-shadow:0 0 60px rgba(93,242,192,.12)}
+.about{list-style:none;display:grid;gap:.9rem}
+.about li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:10px;padding:1rem 1.25rem;transition:transform .3s,border-color .3s,box-shadow .3s}
+.about li:hover{transform:translateX(6px);border-left-color:var(--cyan);box-shadow:0 6px 24px rgba(56,214,245,.1)}
+.badges{display:flex;flex-wrap:wrap;gap:.7rem}
+.badges img{height:28px;transition:transform .25s}.badges img:hover{transform:translateY(-3px) scale(1.05)}
+.stats{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start}
+.stats img{max-width:100%;height:auto;border-radius:10px}
+.socials{display:flex;gap:.8rem;flex-wrap:wrap}
+.socials img{height:30px;transition:transform .25s}.socials a:hover img{transform:translateY(-3px)}
+footer{text-align:center;padding:2.5rem 1rem 3rem;border-top:1px solid var(--line);color:var(--muted)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:6.5rem}
+  .hero-photo{order:-1;max-width:260px}
+  .nav nav a:nth-child(n+3){display:none}
+  #portrait{height:auto;width:min(86vw,520px)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="intro-on">
+
+<!-- INTRO -->
+<div id="intro" aria-label="Introduction">
+  <canvas id="dna"></canvas>
+  <div class="intro-text">
+    <h1 id="introName">Sohini Naskar</h1>
+    <p id="introSub">Biotechnology + AI &amp; Python Developer</p>
+  </div>
+  <div id="portraitStage">
+    <img id="portrait" src="portrait.jpg" alt="Portrait of Sohini Naskar" decoding="async">
+  </div>
+  <button id="skipBtn" type="button">Skip intro</button>
+</div>
+
+<!-- SITE -->
+<header class="nav">
+  <a href="#home" class="logo">Sohini Naskar</a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#stack">Tech stack</a>
+    <a href="#stats">GitHub stats</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <div class="hero-copy">
+      <h2>Sohini Naskar</h2>
+      <p class="lead">Biotechnology meets code: Python, data analysis and bioinformatics.</p>
+      <div class="cta">
+        <a class="btn primary" href="#about">About me</a>
+        <a class="btn" href="https://github.com/Sohini-17" target="_blank" rel="noopener">GitHub profile</a>
+      </div>
+    </div>
+    <div class="hero-photo"><img src="portrait.jpg" alt="Sohini Naskar" onerror="this.parentElement.style.display='none'"></div>
+  </section>
+
+  <section id="about" class="reveal">
+    <h2>💫 About Me</h2>
+    <ul class="about">
+      <li>🔭 Currently developing Python-based projects and strengthening my programming skills.</li>
+      <li>🎓 Strong interest in computational biology and research.</li>
+      <li>🤝 Open to collaborating on Python, Biotechnology, and Data Science projects.</li>
+      <li>🧬 Interested in exploring the intersection of Biotechnology, Artificial Intelligence, and Bioinformatics.</li>
+      <li>🌱 Currently learning Python, NumPy, Pandas, and Data Analysis.</li>
+      <li>💬 Feel free to connect with me about Python, Biology, and emerging technologies.</li>
+      <li>⚡ Passionate about combining biological sciences with computational technologies to explore innovative solutions.</li>
+    </ul>
+  </section>
+
+  <section id="stack" class="reveal">
+    <h2>💻 Tech Stack</h2>
+    <div class="badges">
+      <img loading="lazy" alt="Pandas" src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white">
+      <img loading="lazy" alt="MySQL" src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white">
+      <img loading="lazy" alt="NumPy" src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white">
+      <img loading="lazy" alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white">
+      <img loading="lazy" alt="Matplotlib" src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black">
+      <img loading="lazy" alt="PyTorch" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white">
+    </div>
+  </section>
+
+  <section id="stats" class="reveal">
+    <h2>📊 GitHub Stats</h2>
+    <div class="stats">
+      <img loading="lazy" alt="GitHub stats" src="https://github-readme-stats.shion.dev/api?username=Sohini-17&theme=dark&hide_border=false&include_all_commits=true&count_private=false">
+      <img loading="lazy" alt="GitHub streak" src="https://streak-stats.demolab.com/?user=Sohini-17&theme=dark&hide_border=false">
+      <img loading="lazy" alt="Top languages" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Sohini-17&theme=dark&hide_border=false&include_all_commits=true&count_private=false&layout=compact">
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>🌐 Socials</h2>
+    <div class="socials">
+      <a href="https://instagram.com/its_divinesoul_.14_" target="_blank" rel="noopener"><img alt="Instagram" src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white"></a>
+      <a href="mailto:naskarsohini49@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white"></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a href="https://visitcount.itsvg.in" target="_blank" rel="noopener"><img alt="Profile views" src="https://komarev.com/ghpvc/?username=Sohini-17&icon=5&color=6"></a>
+</footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var intro = $('intro'), canvas = $('dna'), ctx = canvas.getContext('2d');
+  var name = $('introName'), sub = $('introSub'), text = document.querySelector('.intro-text');
+  var stage = $('portraitStage'), portrait = $('portrait'), skip = $('skipBtn');
+  var timers = [], raf, running = true, t0 = performance.now();
+
+  // Scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function (list) {
+      list.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+
+  // DNA helix
+  function resize() {
+    var d = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = innerWidth * d; canvas.height = innerHeight * d;
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+  }
+  resize(); addEventListener('resize', resize);
+
+  function dot(x, y, z, c, a) {
+    var r = 4 + z * 2.2;
+    ctx.globalAlpha = a * (0.55 + 0.45 * (z + 1) / 2);
+    ctx.fillStyle = c; ctx.shadowColor = c; ctx.shadowBlur = 14;
+    ctx.beginPath(); ctx.arc(x, y, Math.max(r, 1.5), 0, 6.283); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  function drawDNA(now) {
+    var w = innerWidth, h = innerHeight, t = (now - t0) / 1000;
+    ctx.clearRect(0, 0, w, h);
+    var n = w < 600 ? 26 : 44, amp = Math.min(w * 0.14, 130), cx = w / 2;
+    var step = h / (n - 1), grow = Math.min(t / 1.4, 1);
+    for (var i = 0; i < n; i++) {
+      var y = i * step, ph = i * 0.42 + t * 1.6;
+      var x1 = cx + Math.sin(ph) * amp, x2 = cx - Math.sin(ph) * amp;
+      var z1 = Math.cos(ph), z2 = -z1;
+      var a = grow * (0.25 + 0.75 * Math.min(1, Math.sin(Math.PI * i / n) * 1.6));
+      ctx.globalAlpha = a * 0.35;
+      var g = ctx.createLinearGradient(x1, y, x2, y);
+      g.addColorStop(0, '#5df2c0'); g.addColorStop(1, '#38d6f5');
+      ctx.strokeStyle = g; ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y); ctx.stroke();
+      dot(x1, y, z1, '#5df2c0', a); dot(x2, y, z2, '#38d6f5', a);
+    }
+    ctx.globalAlpha = 1;
+  }
+  function loop(now) { if (!running) return; drawDNA(now); raf = requestAnimationFrame(loop); }
+  raf = requestAnimationFrame(loop);
+
+  // Finish / skip
+  function finish() {
+    if (!running) return; running = false;
+    timers.forEach(clearTimeout); cancelAnimationFrame(raf);
+    intro.classList.add('done'); document.body.classList.remove('intro-on');
+    try { sessionStorage.setItem('introSeen', '1'); } catch (e) {}
+    setTimeout(function () { intro.style.display = 'none'; }, 1300);
+  }
+  skip.addEventListener('click', finish);
+  addEventListener('keydown', function (e) { if (e.key === 'Escape') finish(); });
+
+  var seen = false;
+  try { seen = sessionStorage.getItem('introSeen') === '1'; } catch (e) {}
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (seen || reduce) { intro.style.display = 'none'; running = false; document.body.classList.remove('intro-on'); return; }
+
+  // Timeline
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  var hasPhoto = false, probe = new Image();
+  probe.onload = function () { hasPhoto = true; };
+  probe.src = portrait.getAttribute('src');
+
+  at(3600, function () { canvas.classList.add('fade'); });
+  at(4300, function () { name.classList.add('show'); });
+  at(6000, function () { sub.classList.add('show'); });
+  at(8200, function () {
+    if (!hasPhoto) { finish(); return; }
+    text.classList.add('hide'); stage.classList.add('show');
+    at(900, function () { portrait.classList.add('eyes'); });
+    at(4300, function () { portrait.classList.remove('eyes'); });
+    at(8200, finish);
+  });
+})();
+</script>
+</body>
+</html>
